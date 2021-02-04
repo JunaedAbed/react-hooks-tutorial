@@ -17,25 +17,6 @@ function App() {
     localStorage.setItem('count', JSON.stringify(count));//set count in local storage
   }, [count]);
   
-  //http://numbersapi.com/5/math
-  // useEffect(() => {
-  //   const onMouseMove = e => {
-  //     console.log(e);
-  //   }
-  //   window.addEventListener('mousemove', onMouseMove);//when mounts
-    
-  //   return () => {
-  //     window.removeEventListener('mousemove', onMouseMove); //when unmounts
-  //   }
-  // }, []);
-  
-  // useEffect(() => {
-  //   console.log('mount1');
-  // })
-  
-  // useEffect(() => {
-  //   console.log('mount2');
-  // })
   
   return (
     <div className="App">
