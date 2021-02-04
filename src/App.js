@@ -1,25 +1,19 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, { useRef, useState} from 'react';
 import './App.css';
-import { useFetch } from './useFetch';
 import { useForm } from './useForm';
-import { Hello } from './Hello';
+import { Hello } from './Components/Hello';
 
 function App() {
   
   const [values, handleChange] = useForm({email: '', password: '', firstName: ''});
   
-  const [count, setCount] = useState(() => 
-    JSON.parse(localStorage.getItem('count'))//init function
-  );
-  const {data, loading} = useFetch(`http://numbersapi.com/${count}/math`);
-  
   const inputRef = useRef();
+  const hello = useRef(() => console.log('hello'));
+  
   
   const [showHello, setShowHello] = useState(true);
   
-  useEffect(() => {
-    localStorage.setItem('count', JSON.stringify(count));//set count in local storage
-  }, [count]);
+  
   
   
   return (
@@ -27,11 +21,6 @@ function App() {
       <header className="App-header">
         
         <div>
-          <div>{!data ? 'loading...' : data}</div>
-          
-          <div>count: {count}</div>
-          
-          <button onClick={() => setCount(c => c+1)}>increment</button>
           
           <button onClick={() => setShowHello(!showHello)}>toggle</button>
           {showHello && <Hello />}
@@ -44,6 +33,7 @@ function App() {
           
           <button onClick={() => {
            inputRef.current.focus();
+           hello.current();
           }}>focus</button>
           
         </div>
