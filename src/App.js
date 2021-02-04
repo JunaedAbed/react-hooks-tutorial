@@ -18,7 +18,6 @@ function App() {
   }, [count]);
   
   //http://numbersapi.com/5/math
-  
   // useEffect(() => {
   //   const onMouseMove = e => {
   //     console.log(e);
