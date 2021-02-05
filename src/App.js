@@ -2,6 +2,8 @@ import React, { useRef, useState} from 'react';
 import './App.css';
 import { useForm } from './useForm';
 import { Hello } from './Components/Hello';
+import { useMeasure } from "./useMeasure";
+
 
 function App() {
   
@@ -13,7 +15,8 @@ function App() {
   
   const [showHello, setShowHello] = useState(true);
   
-  
+  const [rect, inputRef2] = useMeasure([]);
+
   
   
   return (
@@ -27,7 +30,7 @@ function App() {
           
           <div><input ref={inputRef} name='email' placeholder='email' value={values.email} onChange={handleChange} /></div>
           
-          <div><input name='firstName' placeholder='fName' value={values.firstName} onChange={handleChange} /></div>
+          <div><input ref={inputRef2} name='firstName' placeholder='fName' value={values.firstName} onChange={handleChange} /></div>
           
           <div><input name='password' type='password' placeholder='password' value={values.password} onChange={handleChange} /></div>
           
