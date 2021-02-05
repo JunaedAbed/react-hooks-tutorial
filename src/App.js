@@ -1,44 +1,39 @@
-import React, { useRef, useState} from 'react';
+//useCallback function is used to prevent functions being created on every single render.
+
+import React, { useCallback, useState } from 'react';
 import './App.css';
-import { useForm } from './useForm';
 import { Hello } from './Components/Hello';
-import { useMeasure } from "./useMeasure";
+import { Square } from './Components/Square';
 
 
 function App() {
   
-  const [values, handleChange] = useForm({email: '', password: '', firstName: ''});
+  const [count, setCount] = useState(0);
   
-  const inputRef = useRef();
-  const hello = useRef(() => console.log('hello'));
+  const fvrtNums = [7, 21, 37];
   
+  const increment = useCallback((n) => {
+    setCount(c => c + n);
   
-  const [showHello, setShowHello] = useState(true);
+  }, [ setCount]);
+  // const increment = useCallback(() => {
+  //   setCount(c => c + 1);
+  // }, [ setCount]);
   
-  const [rect, inputRef2] = useMeasure([]);
+  //when count or setCount changes, this func will be recreated and will be put in increment var.
 
-  
-  
   return (
     <div className="App">
       <header className="App-header">
         
         <div>
-          
-          <button onClick={() => setShowHello(!showHello)}>toggle</button>
-          {showHello && <Hello />}
-          
-          <div><input ref={inputRef} name='email' placeholder='email' value={values.email} onChange={handleChange} /></div>
-          
-          <div><input ref={inputRef2} name='firstName' placeholder='fName' value={values.firstName} onChange={handleChange} /></div>
-          
-          <div><input name='password' type='password' placeholder='password' value={values.password} onChange={handleChange} /></div>
-          
-          <button onClick={() => {
-           inputRef.current.focus();
-           hello.current();
-          }}>focus</button>
-          
+          <Hello increment={increment} />
+          <div>Count: {count}</div>
+          {fvrtNums.map(n => {
+            return (
+              <Square increment={increment} n={n} key={n} />
+            );
+          })}
         </div>
         
       </header>

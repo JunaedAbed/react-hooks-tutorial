@@ -2,10 +2,10 @@ import React from "react";
 import { useCountRenders } from "../useCountRenders";
 
 //memo --> compare the props. if props have changed it will re render.
-export const Hello = React.memo(({increment}) => {
-  // useCountRenders();
+export const Square = React.memo(({increment, n}) => {
+  useCountRenders();
   
   return (
-    <button onClick={() => increment(5)}>Hell</button>
+    <button onClick={() => increment(n)}>{n}</button>
   );
 });
